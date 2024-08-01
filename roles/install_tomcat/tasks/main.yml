@@ -1,0 +1,22 @@
+---
+- name: Add Universe repository
+  apt_repository:
+    repo: deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe
+    state: present
+  become: yes
+
+
+- name: Ensure package list is updated
+  apt:
+    update_cache: yes
+
+- name: install tomact
+  apt:
+    name: tomcat10
+    state: present
+
+- name: enable and end tomcat
+  systemd:
+    name: tomcat10
+    enabled: yes
+    state: started

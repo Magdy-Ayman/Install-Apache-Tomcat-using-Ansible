@@ -1,0 +1,12 @@
+---
+- name: Update and clear apt cache
+  apt:
+    update_cache: yes
+
+- name: dpkg conf
+  command: dpkg --configure -a
+
+- name: install java
+  apt:
+    name: default-jdk
+    state: present
